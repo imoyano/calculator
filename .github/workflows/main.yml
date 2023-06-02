@@ -1,0 +1,35 @@
+name: 🚀 Deploy Calculator APP
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install lftp
+        run: sudo apt-get install lftp -y
+
+      - name: Deploy to hosting
+        run: |
+          lftp -c "set sftp:auto-confirm yes; open -u ${{ secrets.USERNAME }},${{ secrets.PASSWORD }} sftp://opal8.opalstack.com; mirror -R -e -X .git -X .github -X '*.md' -X '*.yml' ./ /home/imoyano/apps/calculator/"
+
+      - name: 💻 Rebooting 👾👾👾
+        uses: appleboy/ssh-action@master
+        with:
+          host: opal8.opalstack.com
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            cd /home/imoyano/apps/calculator
+            sh stop
+            npm i
+            sh start
+            ls -al

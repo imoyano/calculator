@@ -5,7 +5,7 @@
         <div @click="sign" class="btn top-operator">+/-</div>
         <div @click="percent" class="btn top-operator">%</div>
         <div @click="divide" class="btn operator">&divide;</div>
-        <div @click="append('7')" class="btn seven">7</div>
+        <div @click="append('7')" class="btn">7</div>
         <div @click="append('8')" class="btn">8</div>
         <div @click="append('9')" class="btn">9</div>
         <div @click="times" class="btn operator">x</div>
@@ -16,10 +16,10 @@
         <div @click="append('1')" class="btn">1</div>
         <div @click="append('2')" class="btn">2</div>
         <div @click="append('3')" class="btn">3</div>
-        <div @click="add" class="btn operator plus">+</div>
+        <div @click="add" class="btn operator">+</div>
         <div @click="append('0')" class="btn zero">0</div>
-        <div @click="dot()" class="btn dot">.</div>
-        <div @click="equal" class="btn operator equal">=</div>
+        <div @click="dot()" class="btn">.</div>
+        <div @click="equal" class="btn operator">=</div>
     </div>
 </template>
 
@@ -81,8 +81,8 @@ export default {
             console.log(`operator: ${this.operator}`);
             console.log(`current: ${this.current}`);
             this.current = `${this.operator(
-                parseFloat(this.previous),
-                parseFloat(this.current)
+                parseFloat(this.current),
+                parseFloat(this.previous)
             )}`;
             this.previous = null;
         }

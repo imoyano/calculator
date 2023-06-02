@@ -1,0 +1,12 @@
+#!/bin/bash
+export TMPDIR=/home/imoyano/apps/calculator/tmp
+mkdir -p /home/imoyano/apps/calculator/tmp
+PIDFILE="/home/imoyano/apps/calculator/tmp/node.pid"
+NODE=/home/imoyano/apps/calculator/node/bin/node
+NPM=/home/imoyano/apps/calculator/node/bin/npm
+export PATH=$HOME/apps/calculator/node/bin:$PATH
+
+cd /home/imoyano/apps/calculator
+/usr/sbin/daemonize -c /home/imoyano/apps/calculator -a -e ~/logs/apps/calculator/node_error.log -o ~/logs/apps/calculator/node_output.log $NPM run start
+
+echo "Started Node.js for calculator."

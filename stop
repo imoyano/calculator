@@ -1,0 +1,6 @@
+#!/bin/bash
+COMMAND="node /home/imoyano/apps/calculator/node_modules/.bin/cross-env"
+pkill -f "$COMMAND"
+sleep 1
+pgrep -f "$COMMAND" && pkill -f "$COMMAND"
+pgrep -f "$COMMAND" || echo "Stopped."
