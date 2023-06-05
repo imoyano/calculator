@@ -25,7 +25,7 @@ jobs:
         with:
           host: opal8.opalstack.com
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
             cd /home/imoyano/apps/calculator
